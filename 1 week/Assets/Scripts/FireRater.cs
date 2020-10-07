@@ -5,27 +5,28 @@ using UnityEngine.InputSystem;
 
 public class FireRater : MonoBehaviour
 {
-    [SerializeField]
-    private Animator anim;
-
     [SerializeField] private float fireRate = 1.0f;
 
     private float rate = 0;
 
-    public bool FireRate ()
+    public bool IsPressing ()
     {
         if (Mouse.current.leftButton.isPressed)
-        {
-            anim.SetBool ("Shoot", true);
+            return true;
+        return false;
+    }
 
+    public bool FireRate ()
+    {
+        if (IsPressing ())
+        {
             if (rate < Time.time)
             {
                 rate = Time.time + 1 / fireRate;
                 return true;
             }
-            return false;
         }
-        anim.SetBool ("Shoot", false);
+
         return false;
     }
 }

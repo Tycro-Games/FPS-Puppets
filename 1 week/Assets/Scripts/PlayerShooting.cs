@@ -3,20 +3,28 @@ using UnityEngine;
 
 public class PlayerShooting : MonoBehaviour
 {
+    private int maxBullets;
     private FireRater fireRater;
 
     private AudioShooting audioShooting;
 
-    private Spawner spawn = null;
-
+    private AudioShooting reloadShooting;
     private Reload reload;
+
+    private Spawner spawn = null;
 
     [Header ("Audio")]
     [SerializeField]
     private AudioClip muzzleClip;
 
     [SerializeField]
-    private AudioClip reloadClip;
+    private AudioClip[] reloadClip;
+
+    private int currentIndex = 0;
+
+    [Header ("Animation")]
+    [SerializeField]
+    private Animator anim;
 
     [Header ("Effects")]
     [SerializeField]
@@ -25,49 +33,88 @@ public class PlayerShooting : MonoBehaviour
     [SerializeField]
     private ParticleSystem muzzle;
 
+    [SerializeField]
+    private float muzzleFreq = .5f;
+
     [Header ("Shooting")]
     [SerializeField]
     private float range = 200.0f;
+
+    [SerializeField]
+    private LayerMask WhatToShoot = 0;
 
     [Header ("Reloading")]
     [SerializeField]
     private int bullets = 30;
 
-    [SerializeField]
-    private float reloadTime = 3.0f;
-
-    [SerializeField]
-    private LayerMask WhatToShoot = 0;
+    private float reloadTime = 0.9f;
+    private Transform camTr = null;
 
     public void Shoot ()
     {
-        muzzle.Play ();
+        bullets--;
+
+        if (Random.Range (0f, 1f) <= muzzleFreq)
+            muzzle.Play ();
+
         audioShooting.Play (muzzleClip);
 
-        Vector3 random = new Vector3 (Random.Range (0f, .1f), Random.Range (0f, .1f), Random.Range (0f, .1f));
+        // Vector3 random = new Vector3 (Random.Range (0f, .1f), Random.Range (0f, .1f),
+        // Random.Range (0f, .1f));
 
-        Vector3 dir = transform.forward + random;
+        Vector3 dir = camTr.forward;
 
-        if (Physics.Raycast (transform.position, dir, out RaycastHit hit, range, WhatToShoot))
+        if (Physics.Raycast (camTr.position, dir, out RaycastHit hit, range, WhatToShoot))
         {
-            Debug.DrawLine (transform.position, hit.point);
-            Instantiate (impact, hit.point, Quaternion.LookRotation (hit.normal));
+            if (hit.collider.CompareTag ("Enemy"))
+            {
+                hit.collider.GetComponent<HitFelt> ().OnHit ();
+            }
+            else
+                Instantiate (impact, hit.point, Quaternion.LookRotation (hit.normal));
+        }
+        if (bullets <= 0)
+        {
+            Reloading ();
+        }
+    }
+
+    public void Reloading ()
+    {
+        if (maxBullets != bullets && !reload.Isreload)
+        {
+            anim.Play ("Reload");
+            StartCoroutine (reload.Reloading (reloadTime));
+            bullets = maxBullets;
         }
     }
 
     private void Start ()
     {
-        reload = GetComponent<Reload> ();
+        camTr = Camera.main.transform;
+
         audioShooting = GetComponent<AudioShooting> ();
+        reload = GetComponent<Reload> ();
         spawn = GetComponent<Spawner> ();
         fireRater = GetComponent<FireRater> ();
+        reloadShooting = transform.GetChild (0).GetComponent<AudioShooting> ();
+        anim = GetComponentInChildren<Animator> ();
+        maxBullets = bullets;
     }
 
     private void Update ()
     {
-        if (fireRater.FireRate ())
+        if (fireRater.FireRate () && !reload.Isreload && bullets > 0)
         {
             Shoot ();
         }
+
+        SyncAnim ();
+    }
+
+    private void SyncAnim ()
+    {
+        anim.SetBool ("Reload", reload.Isreload);
+        anim.SetBool ("Shoot", fireRater.IsPressing () && !reload.Isreload);
     }
 }

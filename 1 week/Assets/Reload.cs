@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class Reload : MonoBehaviour
 {
-    [SerializeField]
-    private int maxBullets;
+    [HideInInspector]
+    public bool Isreload = false;
 
-    private IEnumerator Reloading ()
+    public IEnumerator Reloading (float waitTime)
     {
-        audioShooting.Play (muzzleClip);
-        yield return new WaitForSeconds (reloadTime);
+        Isreload = true;
+
+        yield return new WaitForSeconds (waitTime);
+        Isreload = false;
     }
 }
