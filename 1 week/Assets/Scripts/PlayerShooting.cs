@@ -70,8 +70,8 @@ public class PlayerShooting : MonoBehaviour
             {
                 hit.collider.GetComponent<HitFelt> ().OnHit ();
             }
-            else
-                Instantiate (impact, hit.point, Quaternion.LookRotation (hit.normal));
+
+            Instantiate (impact, hit.point, Quaternion.LookRotation (hit.normal));
         }
         if (bullets <= 0)
         {
@@ -83,6 +83,8 @@ public class PlayerShooting : MonoBehaviour
     {
         if (maxBullets != bullets && !reload.Isreload)
         {
+            currentIndex = (currentIndex + 1) % reloadClip.Length;
+            audioShooting.Play (reloadClip[currentIndex]);
             anim.Play ("Reload");
             StartCoroutine (reload.Reloading (reloadTime));
             bullets = maxBullets;
