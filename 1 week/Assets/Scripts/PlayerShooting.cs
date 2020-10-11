@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Cinemachine;
+using System.Collections;
 using UnityEngine;
 
 public class PlayerShooting : MonoBehaviour
@@ -31,7 +32,9 @@ public class PlayerShooting : MonoBehaviour
     private GameObject impact = null;
 
     [SerializeField]
-    private ParticleSystem muzzle;
+    private GameObject muzzle;
+
+    private CinemachineImpulseSource cinemachineImpulseSource;
 
     [SerializeField]
     private float muzzleFreq = .5f;
@@ -55,8 +58,10 @@ public class PlayerShooting : MonoBehaviour
         bullets--;
 
         if (Random.Range (0f, 1f) <= muzzleFreq)
-            muzzle.Play ();
-
+        {
+            muzzle.SetActive (true);
+            cinemachineImpulseSource.GenerateImpulse ();
+        }
         audioShooting.Play (muzzleClip);
 
         // Vector3 random = new Vector3 (Random.Range (0f, .1f), Random.Range (0f, .1f),
@@ -93,6 +98,7 @@ public class PlayerShooting : MonoBehaviour
 
     private void Start ()
     {
+        cinemachineImpulseSource = muzzle.GetComponent<CinemachineImpulseSource> ();
         camTr = Camera.main.transform;
 
         audioShooting = GetComponent<AudioShooting> ();

@@ -18,16 +18,16 @@ namespace UnityStandardAssets.Characters.FirstPerson
         [SerializeField] private float m_JumpSpeed;
         [SerializeField] private float m_StickToGroundForce;
         [SerializeField] private float m_GravityMultiplier;
+
         [SerializeField] private MouseLook m_MouseLook;
         [SerializeField] private bool m_UseFovKick;
+
         [SerializeField] private FOVKick m_FovKick = new FOVKick ();
         [SerializeField] private bool m_UseHeadBob;
         [SerializeField] private CurveControlledBob m_HeadBob = new CurveControlledBob ();
         [SerializeField] private LerpControlledBob m_JumpBob = new LerpControlledBob ();
         [SerializeField] private float m_StepInterval;
         [SerializeField] private AudioClip[] m_FootstepSounds;    // an array of footstep sounds that will be randomly selected from.
-
-        private Camera m_Camera;
 
         private float m_YRotation;
         private Vector2 m_Input;
@@ -40,26 +40,23 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private float m_NextStep;
 
         private AudioSource m_AudioSource;
+        private Camera m_Camera;
 
         // Use this for initialization
         private void Start ()
         {
-            m_CharacterController = GetComponent<CharacterController> ();
             m_Camera = Camera.main;
-            m_OriginalCameraPosition = m_Camera.transform.localPosition;
-            m_FovKick.Setup (m_Camera);
-            m_HeadBob.Setup (m_Camera, m_StepInterval);
+            m_CharacterController = GetComponent<CharacterController> ();
             m_StepCycle = 0f;
             m_NextStep = m_StepCycle / 2f;
 
             m_AudioSource = GetComponent<AudioSource> ();
-            m_MouseLook.Init (transform, m_Camera.transform);
         }
 
         // Update is called once per frame
         private void Update ()
         {
-            RotateView ();
+            //RotateView ();
 
             if (!m_PreviouslyGrounded && m_CharacterController.isGrounded)
             {
@@ -79,13 +76,13 @@ namespace UnityStandardAssets.Characters.FirstPerson
             float speed;
             GetInput (out speed);
             // always move along the camera forward as it is the direction that it being aimed at
-            Vector3 desiredMove = transform.forward * m_Input.y + transform.right * m_Input.x;
+            Vector3 desiredMove = m_Camera.transform.forward * m_Input.y + m_Camera.transform.right * m_Input.x;
 
-            // get a normal for the surface that is being touched to move along it
-            RaycastHit hitInfo;
-            Physics.SphereCast (transform.position, m_CharacterController.radius, Vector3.down, out hitInfo,
-                               m_CharacterController.height / 2f, Physics.AllLayers, QueryTriggerInteraction.Ignore);
-            desiredMove = Vector3.ProjectOnPlane (desiredMove, hitInfo.normal).normalized;
+            //// get a normal for the surface that is being touched to move along it
+            //RaycastHit hitInfo;
+            //Physics.SphereCast (transform.position, m_CharacterController.radius, Vector3.down, out hitInfo,
+            //                   m_CharacterController.height / 2f, Physics.AllLayers, QueryTriggerInteraction.Ignore);
+            //desiredMove = Vector3.ProjectOnPlane (desiredMove, hitInfo.normal).normalized;
 
             m_MoveDir.x = desiredMove.x * speed;
             m_MoveDir.z = desiredMove.z * speed;
@@ -165,8 +162,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private void GetInput (out float speed)
         {
             // Read input
-            float horizontal = CrossPlatformInputManager.GetAxis ("Horizontal");
-            float vertical = CrossPlatformInputManager.GetAxis ("Vertical");
+            float horizontal = Input.GetAxis ("Horizontal");
+            float vertical = Input.GetAxis ("Vertical");
 
             bool waswalking = m_IsWalking;
 
@@ -194,10 +191,10 @@ namespace UnityStandardAssets.Characters.FirstPerson
             }
         }
 
-        private void RotateView ()
-        {
-            m_MouseLook.LookRotation (transform, m_Camera.transform);
-        }
+        //private void RotateView ()
+        //{
+        //    m_MouseLook.LookRotation (transform, m_Camera);
+        //}
 
         private void OnControllerColliderHit (ControllerColliderHit hit)
         {
