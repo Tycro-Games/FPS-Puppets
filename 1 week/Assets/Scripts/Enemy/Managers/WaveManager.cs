@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
 public class WaveManager : MonoBehaviour
@@ -31,19 +30,19 @@ public class WaveManager : MonoBehaviour
     private IEnumerator StartWaves ()
     {
         int index = 0;
+        int countEnemies = 0;
         while (true)
         {
-            foreach (EnemySpawner spawner in spawnerManager.spawners)
+            int lastcount = countEnemies;
+            index %= waves.Length;
+            for (int i = waves[index].Count + lastcount; i > 0; i--)
             {
-                for (int i = waves[index % waves.Length].Count; i > 0; i--)
-                {
-                    spawnerManager.Spawn (spawner, waves[index % waves.Length].Enemy, enemyManager);
-                    yield return null;
-                }
+                spawnerManager.Spawn (spawnerManager.RandomSpawner (), waves[index].Enemy, enemyManager);
+                yield return null;
             }
+            countEnemies += waves[index].Count;
             yield return new WaitWhile (() => enemyManager.CheckEnemiesAlive ());
             index++;
-            index %= waves.Length;
         }
     }
 }

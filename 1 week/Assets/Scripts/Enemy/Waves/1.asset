@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38f25e0db8ca99248b218c2b83c07a70, type: 3}
   m_Name: 1
   m_EditorClassIdentifier: 
-  count: 3
+  count: 1
   enemy: {fileID: 6999467145550511561, guid: 17264f881569f0748ad47dfebf28302e, type: 3}
