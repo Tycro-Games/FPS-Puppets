@@ -12,7 +12,7 @@ public class PlayerShooting : MonoBehaviour
     private AudioShooting reloadShooting;
     private Reload reload;
 
-    private Spawner spawn = null;
+    private EnemySpawner spawn = null;
 
     [Header ("Audio")]
     [SerializeField]
@@ -106,7 +106,7 @@ public class PlayerShooting : MonoBehaviour
 
         audioShooting = GetComponent<AudioShooting> ();
         reload = GetComponent<Reload> ();
-        spawn = GetComponent<Spawner> ();
+        spawn = GetComponent<EnemySpawner> ();
         fireRater = GetComponent<FireRater> ();
         reloadShooting = transform.GetChild (0).GetComponent<AudioShooting> ();
         anim = GetComponentInChildren<Animator> ();

@@ -2285,6 +2285,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6999467145550511560}
+  - component: {fileID: 5412569108343535466}
   - component: {fileID: 6999467145550511603}
   - component: {fileID: 6999467145550511604}
   - component: {fileID: 6999467145550511605}
@@ -2316,6 +2317,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5412569108343535466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6999467145550511561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f682af6e43e6964ea73c3a9435666e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!195 &6999467145550511603
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2364,7 +2377,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.14434066
+  m_Radius: 0.25
   m_Height: 1.7912984
   m_Direction: 1
   m_Center: {x: 0, y: 0.8956492, z: 0.005899906}
@@ -2405,7 +2418,7 @@ MonoBehaviour:
   m_GravityMultiplier: 2
   m_RunCycleLegOffset: 0.2
   m_MoveSpeedMultiplier: 0.5
-  m_AnimSpeedMultiplier: 0.75
+  m_AnimSpeedMultiplier: 1
   m_GroundCheckDistance: 0.2
   Ground:
     serializedVersion: 2
@@ -2492,22 +2505,22 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6999467145550511561}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: 823a231f33fbcd1419fa1f1517d1150e,
     type: 2}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
+  m_audioClip: {fileID: 8300000, guid: 3b09d59f4499d45428baa7a21e954296, type: 3}
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 9.06
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -2542,7 +2555,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0

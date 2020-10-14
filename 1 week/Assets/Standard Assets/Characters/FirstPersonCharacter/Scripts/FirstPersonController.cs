@@ -35,13 +35,14 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private Vector3 m_OriginalCameraPosition;
         private float m_StepCycle;
         private float m_NextStep;
-
+        private PlayFootstetpsSounds playFootstetps;
         private Camera m_Camera;
 
         // Use this for initialization
 
         private void Start ()
         {
+            playFootstetps = GetComponent<PlayFootstetpsSounds> ();
             m_Camera = Camera.main;
             m_CharacterController = GetComponent<CharacterController> ();
             m_StepCycle = 0f;
@@ -112,6 +113,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             }
 
             m_NextStep = m_StepCycle + m_StepInterval;
+            playFootstetps.PlayFootStepAudio ();
         }
 
         private void UpdateCameraPosition (float speed)

@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Test.unity
     guid: fb7ac2a82a129ff4d89fffa4583c3287
+  - enabled: 1
+    path: Assets/Scenes/Cross.unity
+    guid: 43fd467d0b18943438f21bb6e8ace992
   m_configObjects: {}

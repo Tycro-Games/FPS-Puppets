@@ -6,10 +6,10 @@ using UnityEngine.Events;
 public class HitFelt : MonoBehaviour
 {
     [SerializeField]
-    private UnityEvent onHit;
+    private UnityEvent onHit = null;
 
     [SerializeField]
-    private EnemyHealth enemyHealth;
+    private EnemyHealth enemyHealth = null;
 
     public void OnHit (int dg)
     {
