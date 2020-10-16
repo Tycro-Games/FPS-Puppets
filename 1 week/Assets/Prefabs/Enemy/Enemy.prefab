@@ -1796,6 +1796,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5573417802288936996}
   - component: {fileID: 9005476770352993990}
+  - component: {fileID: 5596811255161102960}
   m_Layer: 10
   m_Name: Ch36
   m_TagString: Untagged
@@ -1836,7 +1837,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 8950265562796933603, guid: c1bf2fbc36112c74f881fbf6350ad705, type: 3}
+  - {fileID: 2100000, guid: 61ca333e2227609448df354dbaf9be95, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1921,6 +1922,52 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.000019580126, y: -0.17025155, z: 0.020068273}
     m_Extent: {x: 0.8956771, y: 0.94187397, z: 0.24064814}
   m_DirtyAABB: 0
+--- !u!114 &5596811255161102960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5846329906791204028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f019d556ed5894a4bab5b8cc0da43f05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  multiCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0.10195816
+      outSlope: 0.10195816
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.16373236
+    - serializedVersion: 3
+      time: 0.9882431
+      value: 0.31239972
+      inSlope: 1.1654974
+      outSlope: 1.1654974
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.19652642
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2.8074172
+      outSlope: 2.8074172
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.050224006
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  multiplier: 0.29
 --- !u!1 &5889024674401450674
 GameObject:
   m_ObjectHideFlags: 0
@@ -2311,7 +2358,7 @@ Transform:
   m_GameObject: {fileID: 6999467145550511561}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.53073, y: 0.53073, z: 0.53073}
+  m_LocalScale: {x: 0.7009717, y: 0.7009717, z: 0.7009717}
   m_Children:
   - {fileID: 5573417802288936996}
   m_Father: {fileID: 0}
@@ -2475,6 +2522,17 @@ MonoBehaviour:
       - m_Target: {fileID: 3129868300258918034}
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 5596811255161102960}
+        m_MethodName: StartingFade
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -4986,7 +4986,7 @@ GameObject:
   m_Component:
   - component: {fileID: 116629566}
   - component: {fileID: 116629567}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Proxi
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5521,7 +5521,7 @@ GameObject:
   - component: {fileID: 1735922702}
   - component: {fileID: 1735922703}
   - component: {fileID: 1735922704}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5666,7 +5666,7 @@ GameObject:
   m_Component:
   - component: {fileID: 819600275}
   - component: {fileID: 819600276}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5879,7 +5879,7 @@ GameObject:
   - component: {fileID: 1121836142}
   - component: {fileID: 1121836143}
   - component: {fileID: 1121836144}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CM vcam1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5962,8 +5962,8 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 1.8
-  m_Radius: 0.92
+  m_Height: 2
+  m_Radius: 0.5
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
@@ -6231,7 +6231,7 @@ GameObject:
   - component: {fileID: 1284530000}
   - component: {fileID: 1287595472}
   - component: {fileID: 1287896113}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FPSController
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -6269,7 +6269,7 @@ GameObject:
   - component: {fileID: 1283222646}
   - component: {fileID: 1518613879}
   - component: {fileID: 606217441}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FirstPersonCharacter
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -6361,7 +6361,7 @@ GameObject:
   - component: {fileID: 1446729008}
   - component: {fileID: 1446729010}
   - component: {fileID: 1446729009}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: cm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6852,7 +6852,8 @@ MonoBehaviour:
   m_Size: {x: 10, y: 10, z: 10}
   m_Center: {x: 0, y: 2, z: 0}
   m_LayerMask:
-    m_Bits: 1831
+    serializedVersion: 2
+    m_Bits: 4294967295
   m_UseGeometry: 1
   m_DefaultArea: 0
   m_IgnoreNavMeshAgent: 1
@@ -6862,9 +6863,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.06333333
   m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 23800000, guid: 80a3c4021386c1a448cc6e715c78ac5a, type: 2}
-  m_LastPosition: {x: 0, y: 0, z: 0}
-  m_LastRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_NavMeshData: {fileID: 23800000, guid: 574fc571a3ce7534d88cd9a303023be4, type: 2}
 --- !u!1 &2115201657
 GameObject:
   m_ObjectHideFlags: 0
