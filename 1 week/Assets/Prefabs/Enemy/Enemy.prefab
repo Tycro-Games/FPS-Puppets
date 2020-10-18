@@ -1967,7 +1967,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  multiplier: 0.29
+  multiplier: 0.1
 --- !u!1 &5889024674401450674
 GameObject:
   m_ObjectHideFlags: 0

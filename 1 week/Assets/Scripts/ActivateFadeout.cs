@@ -30,6 +30,7 @@ public class ActivateFadeout : MonoBehaviour
             meshRenderer.SetPropertyBlock (propBlock);
             yield return null;
         }
+        Destroy (gameObject);
     }
 
     private void Start ()
